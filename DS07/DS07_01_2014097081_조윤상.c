@@ -1,7 +1,7 @@
-/*/*  DS07_02_2014097081_Á¶À±»ó.c
-author : Á¶À±»ó
+/*/*  DS07_02_2014097081_ì¡°ìœ¤ìƒ.c
+author : ì¡°ìœ¤ìƒ
 Date : 2018.10.8
-Description : Infix notation ½ÄÀ» ÀÔ·Â¹Þ¾Æ Postfix notationÀ¸·Î º¯È¯ÇÏ´Â ÇÁ·Î±×·¥ ±¸Çö
+Description : Infix notation ì‹ì„ ìž…ë ¥ë°›ì•„ Postfix notationìœ¼ë¡œ ë³€í™˜í•˜ëŠ” í”„ë¡œê·¸ëž¨ êµ¬í˜„
 */
 #include<stdio.h> 
 #include<stdlib.h> 
@@ -20,7 +20,7 @@ int stack[MAX_STACK_SIZE];
 char postfix[BUFFER_SIZE];
 int top = -1;
 
-void open() // ÆÄÀÏ ÀÐ±â
+void open() // íŒŒì¼ ì½ê¸°
 {
 	FILE *fp = fopen("input.txt", "r");
 	if (fp != NULL)
@@ -42,7 +42,7 @@ int pop(int *top)
 		printf("Error: Stack is empty\n");
 	return stack[(*top)--];
 }
-int gettoken(char *symbol, int *n) /* ½ºÆ®¸µÀ¸·ÎºÎÅÍ ÅäÅ«À» ¾ò±â À§ÇÔ */
+int gettoken(char *symbol, int *n) /* ìŠ¤íŠ¸ë§ìœ¼ë¡œë¶€í„° í† í°ì„ ì–»ê¸° ìœ„í•¨ */
 {
 	*symbol = postfix[(*n)++];
 	switch (*symbol)
@@ -55,10 +55,10 @@ int gettoken(char *symbol, int *n) /* ½ºÆ®¸µÀ¸·ÎºÎÅÍ ÅäÅ«À» ¾ò±â À§ÇÔ */
 	case '/': return divide;
 	case '%': return mod;
 	case 0: return eos;
-	default: return operand; /* ¿¡·¯ °Ë»ç´Â ÇÏÁö ¾Ê°í ±âº» °ªÀº ÇÇ¿¬»êÀÚ */
+	default: return operand; /* ì—ëŸ¬ ê²€ì‚¬ëŠ” í•˜ì§€ ì•Šê³  ê¸°ë³¸ ê°’ì€ í”¼ì—°ì‚°ìž */
 	}
 }
-void printToken(int p) /* ¿¬»ê Ãâ·Â */
+void printToken(int p) /* ì—°ì‚° ì¶œë ¥ */
 {
 	switch (p)
 	{
@@ -73,29 +73,29 @@ void printToken(int p) /* ¿¬»ê Ãâ·Â */
 	default: break;
 	}
 }
-void Postfix(void) /*¼ö½ÄÀ» ÈÄÀ§ Ç¥±â½ÄÀ¸·Î Ãâ·Â*/
+void Postfix(void) /*ìˆ˜ì‹ì„ í›„ìœ„ í‘œê¸°ì‹ìœ¼ë¡œ ì¶œë ¥*/
 {
 	char symbol;
 	int token;
 	int n = 0;
-	int  top = 0; /*eos¸¦ ½ºÅÃ¿¡ »ðÀÔ*/
+	int  top = 0; /*eosë¥¼ ìŠ¤íƒì— ì‚½ìž…*/
 	stack[0] = eos;
 	token = gettoken(&symbol, &n);
 	for (; token != eos; token = gettoken(&symbol, &n))
 	{
-		if (token == operand) /* ÅäÅ«ÀÌ ÇÇ ¿¬»êÀÚ ÀÏ¶§*/
+		if (token == operand) /* í† í°ì´ í”¼ ì—°ì‚°ìž ì¼ë•Œ*/
 			printf("%c", symbol);
-		else if (token == rparen) /*¿ÞÂÊ °ýÈ£°¡ ³ª¿Ã ¶§±îÁö ÅäÅ«µéÀ» Á¦°ÅÇØ¼­ Ãâ·Â½ÃÅ´*/
+		else if (token == rparen) /*ì™¼ìª½ ê´„í˜¸ê°€ ë‚˜ì˜¬ ë•Œê¹Œì§€ í† í°ë“¤ì„ ì œê±°í•´ì„œ ì¶œë ¥ì‹œí‚´*/
 		{
 			while (stack[top] != lparen)
 				printToken(pop(&top));
-			pop(&top); /*¿ÞÂÊ °ýÈ£¸¦ ¹ö¸°´Ù.*/
+			pop(&top); /*ì™¼ìª½ ê´„í˜¸ë¥¼ ë²„ë¦°ë‹¤.*/
 		}
 		else
 		{
-			while (isp[stack[top]] >= icp[token]) /*½ºÅÃ¿¡ ÀÖ´Â ¿¬»êÀÚÀÇ ¿ì¼±¼øÀ§°¡ µé¾î¿À´Â ¿¬»êÀÚÀÇ ¿ì¼±¼øÀ§º¸´Ù ³ô°Å³ª °°À¸¸é pop()*/
+			while (isp[stack[top]] >= icp[token]) /*ìŠ¤íƒì— ìžˆëŠ” ì—°ì‚°ìžì˜ ìš°ì„ ìˆœìœ„ê°€ ë“¤ì–´ì˜¤ëŠ” ì—°ì‚°ìžì˜ ìš°ì„ ìˆœìœ„ë³´ë‹¤ ë†’ê±°ë‚˜ ê°™ìœ¼ë©´ pop()*/
 				printToken(pop(&top));
-			push(&top, token); /* µé¾î¿À´Â ¿¬»êÀÚ */
+			push(&top, token); /* ë“¤ì–´ì˜¤ëŠ” ì—°ì‚°ìž */
 		}
 	}
 	while ((token = pop(&top)) != eos)

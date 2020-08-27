@@ -1,7 +1,7 @@
-/*/*  DS07_02_2014097081_Á¶À±»ó.c
-author : Á¶À±»ó
+/*/*  DS07_02_2014097081_ì¡°ìœ¤ìƒ.c
+author : ì¡°ìœ¤ìƒ
 Date : 2018.10.8
-Description : postfix(ÈÄÀ§ Ç¥±â½Ä) °è»ê
+Description : postfix(í›„ìœ„ í‘œê¸°ì‹) ê³„ì‚°
 */
 #include<stdio.h> 
 #include<stdlib.h> 
@@ -17,7 +17,7 @@ int stack[MAX_STACK_SIZE];
 char postfix[BUFFER_SIZE];
 int top = -1;
 
-void open() // ÆÄÀÏ ÀĞ±â
+void open() // íŒŒì¼ ì½ê¸°
 {
 	FILE *fp = fopen("input1.txt", "r");
 	if (fp != NULL)
@@ -39,7 +39,7 @@ int pop(int *top)
 		printf("Error: Stack is empty\n");
 	return stack[(*top)--];
 }
-precedence gettoken(char *symbol, int *n) /* ½ºÆ®¸µÀ¸·ÎºÎÅÍ ÅäÅ«À» ¾ò±â À§ÇÔ */
+precedence gettoken(char *symbol, int *n) /* ìŠ¤íŠ¸ë§ìœ¼ë¡œë¶€í„° í† í°ì„ ì–»ê¸° ìœ„í•¨ */
 {
 	*symbol = postfix[(*n)++];
 	switch (*symbol)
@@ -52,7 +52,7 @@ precedence gettoken(char *symbol, int *n) /* ½ºÆ®¸µÀ¸·ÎºÎÅÍ ÅäÅ«À» ¾ò±â À§ÇÔ */
 	case '/': return divide;
 	case '%': return mod;
 	case 0: return eos;
-	default: return operand; /* ¿¡·¯ °Ë»ç´Â ÇÏÁö ¾Ê°í ±âº» °ªÀº ÇÇ¿¬»êÀÚ */
+	default: return operand; /* ì—ëŸ¬ ê²€ì‚¬ëŠ” í•˜ì§€ ì•Šê³  ê¸°ë³¸ ê°’ì€ í”¼ì—°ì‚°ì */
 	}
 }
 
@@ -61,20 +61,20 @@ int eval(void)
 	precedence token;
 	char symbol;
 	int op1, op2;
-	int n = 0; /* ¼ö½Ä ½ºÆ®¸µÀ» À§ÇÑ Ä«¿îÅÍ */
+	int n = 0; /* ìˆ˜ì‹ ìŠ¤íŠ¸ë§ì„ ìœ„í•œ ì¹´ìš´í„° */
 
 	token = gettoken(&symbol, &n);
 
 	while (token != eos)
 	{
 		if (token == operand)
-			push(&top, symbol - '0'); /* ½ºÅÃ »ğÀÔ -->ÇÇ¿¬»êÀÚ(symbol)Àº ÃÊ±â¿¡´Â ÇÏ³ªÀÇ ¹®ÀÚÀÌ¹Ç·Î ÇÑÀÚ¸® Á¤¼ö·Î º¯È¯½ÃÄÑ¾ß ÇÑ´Ù.*/
+			push(&top, symbol - '0'); /* ìŠ¤íƒ ì‚½ì… -->í”¼ì—°ì‚°ì(symbol)ì€ ì´ˆê¸°ì—ëŠ” í•˜ë‚˜ì˜ ë¬¸ìì´ë¯€ë¡œ í•œìë¦¬ ì •ìˆ˜ë¡œ ë³€í™˜ì‹œì¼œì•¼ í•œë‹¤.*/
 		else
 		{
-			op2 = pop(&top); /*½ºÅÃ »èÁ¦*/
+			op2 = pop(&top); /*ìŠ¤íƒ ì‚­ì œ*/
 			op1 = pop(&top);
 
-			switch (token) /*ÅäÅ« ¿¬»ê ½ÇÇà*/
+			switch (token) /*í† í° ì—°ì‚° ì‹¤í–‰*/
 			{
 			case plus: push(&top, op1 + op2);
 				break;
@@ -89,7 +89,7 @@ int eval(void)
 		}
 		token = gettoken(&symbol, &n);
 	}
-	return pop(&top); /*°á°ú¸¦ ¹İÈ¯*/
+	return pop(&top); /*ê²°ê³¼ë¥¼ ë°˜í™˜*/
 }
 
 int main(void)

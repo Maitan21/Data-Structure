@@ -1,7 +1,7 @@
-/*  DS08_01_2014097081_Á¶À±»ó.c
-author : Á¶À±»ó
+/*  DS08_01_2014097081_ì¡°ìœ¤ìƒ.c
+author : ì¡°ìœ¤ìƒ
 Date : 2018.10.8
-Description : 2°³ÀÇ linked list ÀÛ¼º ÈÄ concatenate(Ã¼ÀÎ¿¬°á) °ú invert (¿ª) ¿¬»ê ½ÇÇà
+Description : 2ê°œì˜ linked list ì‘ì„± í›„ concatenate(ì²´ì¸ì—°ê²°) ê³¼ invert (ì—­) ì—°ì‚° ì‹¤í–‰
 */
 #include<stdio.h> 
 #include<stdlib.h> 
@@ -16,17 +16,17 @@ typedef struct node Node;
 
 int temp[BUFFER_SIZE];
 
-Node *head = NULL; // Ã¹ ¸µÅ© Çì´õ
-Node *Head = NULL; // µÎ¹øÂ° ¸µÅ© Çì´õ
-node *ptr1 = NULL; // linked list 1ÀÇ ²¿¸® ºÎºĞ 
-node *ptr2 = NULL; // linked list 2ÀÇ ¸Ó¸® ºÎºĞ
+Node *head = NULL; // ì²« ë§í¬ í—¤ë”
+Node *Head = NULL; // ë‘ë²ˆì§¸ ë§í¬ í—¤ë”
+node *ptr1 = NULL; // linked list 1ì˜ ê¼¬ë¦¬ ë¶€ë¶„ 
+node *ptr2 = NULL; // linked list 2ì˜ ë¨¸ë¦¬ ë¶€ë¶„
 
-void open(); //ÀÔÃâ·Â ÇÔ¼ö
-void Linked_List_First(); // Ã¹ ¸µÅ©µå ¸®½ºÆ®
-void Linked_List_Second(); // µÎ¹øÂ° ¸µÅ©µå ¸®½ºÆ®
-void print(Node *head);  // Ãâ·Â ÇÔ¼ö
-void concatenate(struct node *ptr1, struct node *ptr2); //Ã¼ÀÎ ¿¬°á ÇÔ¼ö
-void invert(struct node **head); // ¿ª ÇÔ¼ö
+void open(); //ì…ì¶œë ¥ í•¨ìˆ˜
+void Linked_List_First(); // ì²« ë§í¬ë“œ ë¦¬ìŠ¤íŠ¸
+void Linked_List_Second(); // ë‘ë²ˆì§¸ ë§í¬ë“œ ë¦¬ìŠ¤íŠ¸
+void print(Node *head);  // ì¶œë ¥ í•¨ìˆ˜
+void concatenate(struct node *ptr1, struct node *ptr2); //ì²´ì¸ ì—°ê²° í•¨ìˆ˜
+void invert(struct node **head); // ì—­ í•¨ìˆ˜
 
 int main(void)
 {
@@ -71,7 +71,7 @@ void Linked_List_First()
 	link->data = temp[2];
 	link->next = NULL;
 	head->next = link;
-	ptr1 = link; //²¿¸® ºÎºĞ Æ÷ÀÎÅÍ ÀúÀå
+	ptr1 = link; //ê¼¬ë¦¬ ë¶€ë¶„ í¬ì¸í„° ì €ì¥
 
 	link = (node *)malloc(sizeof(node));
 	link->data = temp[0];
@@ -96,7 +96,7 @@ void Linked_List_Second()
 	link2->data = temp[3];
 	link2->next = Head;
 	Head = link2;
-	ptr2 = link2; //ÇìµåºÎºĞ Æ÷ÀÎÅÍ ÀúÀå
+	ptr2 = link2; //í—¤ë“œë¶€ë¶„ í¬ì¸í„° ì €ì¥
 }
 void print(Node *head)
 {

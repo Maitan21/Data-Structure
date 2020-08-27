@@ -1,4 +1,4 @@
-/*Description : TreeÀÇ ÀÌÁø Æ®¸® ¼øÈ¸ -> inorder, preorder, postorder ¼øÈ¸*/
+/*Description : Treeì˜ ì´ì§„ íŠ¸ë¦¬ ìˆœíšŒ -> inorder, preorder, postorder ìˆœíšŒ*/
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -9,7 +9,7 @@ typedef struct node {
 	treePointer leftchild, rightchild;
 }node;
 
-/*¿ŞÂÊ °¡Àå ¹ØºÎÅÍ ³Ö¾îÁÖ±â ÈÄ ºÎ¸ğ·Î ÀÌµ¿*/
+/*ì™¼ìª½ ê°€ì¥ ë°‘ë¶€í„° ë„£ì–´ì£¼ê¸° í›„ ë¶€ëª¨ë¡œ ì´ë™*/
 
 /*			A
 		B       C
