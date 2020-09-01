@@ -1,7 +1,7 @@
-/* DS18_01_2014097081_Á¶À±»ó.c
-author : Á¶À±»ó
+/* DS18_01_2014097081_ì¡°ìœ¤ìƒ.c
+author : ì¡°ìœ¤ìƒ
 Date : 2018.11.21
-Description : AOV ¾Ë°í¸®Áò
+Description : AOV ì•Œê³ ë¦¬ì¦˜
 */
 #include <stdio.h>
 #include <stdlib.h>
@@ -19,7 +19,7 @@ typedef struct {
 
 hdnodes *graph;
 
-int N; // Á¤Á¡ÀÇ °¹¼ö
+int N; // ì •ì ì˜ ê°¯ìˆ˜
 int **matric;
 
 void open();
@@ -30,7 +30,7 @@ int main()
 {
 	open();
 	graph = (hdnodes*)malloc(sizeof(hdnodes)*N); 
-	Init(); //ÃÊ±âÈ­
+	Init(); //ì´ˆê¸°í™”
 	for (int i = 0; i<N; i++)
 		for (int j = 0; j < N; j++)
 		{
@@ -72,7 +72,7 @@ void topSort()
 {
 	int i, j, k, top;
 	nodePointer ptr;
-	// ¼±ÇàÀÚ°¡ ¾ø´Â vertices ÀÇ ½ºÅÃÀ» ¸¸µç´Ù.
+	// ì„ í–‰ìê°€ ì—†ëŠ” vertices ì˜ ìŠ¤íƒì„ ë§Œë“ ë‹¤.
 	top = -1;
 	for (i = 0; i < N; i++)
 		if (!graph[i].count) {
@@ -80,11 +80,11 @@ void topSort()
 			top = i;
 		}
 	for (i = 0; i < N; i++)
-		if (top == -1) { // ¸ğµç Á¤Á¡ÀÌ ¼±ÇàÀÚ ÀÖÀ½ ->  retrun;
+		if (top == -1) { // ëª¨ë“  ì •ì ì´ ì„ í–‰ì ìˆìŒ ->  retrun;
 			fprintf(stderr, "\nNetwork has a cycle. Sort terminated.\n");
 			exit(EXIT_FAILURE);
 		}
-		else { //¼±ÇàÀÚ°¡ ¾ø´Â Á¤Á¡ v¸¦ ¼±ÅÃ
+		else { //ì„ í–‰ìê°€ ì—†ëŠ” ì •ì  vë¥¼ ì„ íƒ
 			j = top;
 			top = graph[top].count;
 			printf("%d ", j);
@@ -102,7 +102,7 @@ void topSort()
 
 void Add(int src, int dest)
 {
-	node* newNode = (node*)malloc(sizeof(node)*N); //node Ãß°¡
+	node* newNode = (node*)malloc(sizeof(node)*N); //node ì¶”ê°€
 	node* temp = graph[src].link;
 
 	newNode->vertex = dest;
@@ -118,7 +118,7 @@ void Add(int src, int dest)
 		temp->link = newNode;
 	}
 }
-
+// initate
 void Init() 
 {
 	int i;
